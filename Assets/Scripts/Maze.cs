@@ -88,9 +88,31 @@ public class Maze : MonoBehaviour
             }
         }
     }
-    // Update is called once per frame
-    void Update()
+   public int CountSquareNeighbours(int x, int z)
     {
+        int count = 0;
+        if (x <= 0 || x >= width - 1 || z <= 0 || z >= depth - 1) return 5;
+        if (map[x-1,z]==0) count++;
+        if (map[x+1,z]==0) count++;
+        if (map[x,z+1]==0) count++;
+        if (map[x,z-1]==0) count++;
 
+        return count;
+    }
+
+    public int CountDiagonalNeighbours(int x, int z)
+    {
+        int count = 0;
+        if (x <= 0 || x >= width - 1 || z <= 0 || z >= depth - 1) return 5;
+        if (map[x+1,z+1]==0) count++;
+        if (map[x+1,z-1]==0 ) count++;
+        if (map[x-1, z+1] == 0) count++;
+        if (map[x-1,z-1] == 0) count++;
+        return count;
+    }
+
+    public int CountAllNeighbours(int x, int z)
+    {
+        return CountDiagonalNeighbours(x, z) + CountSquareNeighbours(x,z);
     }
 }

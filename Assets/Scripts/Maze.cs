@@ -55,6 +55,7 @@ public class Maze : MonoBehaviour
     /// </summary>
     public virtual void Generate()
     {
+        
         for (int z = 0; z < depth; z++)
         {
             for (int x = 0; x < width; x++)
@@ -66,6 +67,7 @@ public class Maze : MonoBehaviour
 
             }
         }
+        
     }
     /// <summary>
     /// Function to fill or draw the map

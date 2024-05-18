@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class Prims : Maze
 {
+
+
+    /// <summary>
+    /// This class, which overrides from the parent class Maze, generates a Crawler but requires a starting point (x, z).
+    /// The walls are added to a list, and then we start checking all the walls, adding new ones to the list.
+    /// This process continues until there are no more walls to check.
+    /// </summary>
     public override void Generate()
     {
         int x = 2;

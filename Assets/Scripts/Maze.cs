@@ -20,12 +20,19 @@ public class Maze : MonoBehaviour
     /// <summary>
     /// height and width of the maze
     /// </summary>
+    [Tooltip("This is the depth of your maze")]
     public int depth = 30;
+    [Tooltip("This is the Width of your maze")]
     public int width = 30;
 
     public byte[,] map;
 
+    [Tooltip("This is the scale of your maze")]
     public int scale = 6;
+
+
+    [Tooltip("This is the your main character, always will spawn in the start of the maze")]
+    public GameObject player;
 
     // Start is called before the first frame update
     void Start()

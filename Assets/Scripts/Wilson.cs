@@ -2,6 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public struct MazeCoordinates
+{
+    public int x;
+    public int z;
+}
+
+[System.Serializable]
+public struct MazeCoordinatesStart
+{
+    public int x;
+    public int z;
+}
+
 public class Wilson : Maze
 {
     List<MapLocation> direction = new List<MapLocation>()
@@ -13,19 +27,43 @@ public class Wilson : Maze
     };
 
     List<MapLocation> notUsed = new List<MapLocation>();
+    
+    [Tooltip("Set the start of the maze")]
+    public MazeCoordinates startMaze;
+
+    [Tooltip("Set the final of the maze")]
+    public MazeCoordinates finalMaze;
+
+    [Tooltip("Number of enemies to spawn")]
+    public int enemies;
+   
+    [Tooltip("Set the probability to spawn the enemies")]
+    public int _prob;
+
     public override void Generate()
     {
         //Create a random starting point
         int x = Random.Range(2, width - 2);
         int z = Random.Range(2, depth - 2);
-        map[x, z] = 2;
+
+        map[startMaze.x, startMaze.z] = 2;
+        map[finalMaze.x, finalMaze.z]=2;
+
+        Vector3 pos = new(finalMaze.x*scale, 0, finalMaze.z*scale);
+
+        GameObject final = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+        //final.transform.localScale = new(scale, scale, scale);
+        final.transform.position = pos;
+
+        Instantiate(player, new Vector3(startMaze.x*scale, 5, startMaze.z * scale), Quaternion.identity);
+        
         int runwalkAttempts = width * depth / 3;
         while (GetAvalibleCells() > 1 && runwalkAttempts > 0)
         {
             RandomWalk();
             runwalkAttempts--;
         }
-
+        
     }
 
     int GetAvalibleCells()
@@ -43,6 +81,7 @@ public class Wilson : Maze
         }
         return notUsed.Count;
     }
+
 
     int CountSquareMazeNeightbours(int x, int z)
     {
@@ -107,5 +146,37 @@ public class Wilson : Maze
             }
             inWalk.Clear();
         }
+    }
+
+    void GenerateEnemies()
+    {
+
+        if(_prob > 0)
+        {
+            for (int z = 1; z < depth - 1; z++)
+            {
+                for (int x = 1; x < width - 1; x++)
+                {
+                    if (map[x, z] == map[startMaze.x, startMaze.z])
+                    {
+                        continue;
+                    }
+                    if (map[x, z] == 2   && enemies > 0)
+                    {
+                      //  Debug.Log();
+                        if(Random.Range(0, 100) < _prob)
+                        {
+                            Vector3 pos = new(x * scale, 0, z * scale);
+                            GameObject enemiesSpawn = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+                            enemiesSpawn.transform.position = pos;
+                            enemies--;
+                        }
+                        enemies--;
+                        
+                    }
+                }
+            }
+        }
+        
     }
 }

@@ -37,9 +37,6 @@ public class Wilson : Maze
     [Tooltip("Number of enemies to spawn")]
     public int enemies;
    
-    [Tooltip("Set the probability to spawn the enemies")]
-    public int _prob;
-
     public override void Generate()
     {
         //Create a random starting point
@@ -57,13 +54,16 @@ public class Wilson : Maze
 
         Instantiate(player, new Vector3(startMaze.x*scale, 5, startMaze.z * scale), Quaternion.identity);
         
+
+
         int runwalkAttempts = width * depth / 3;
         while (GetAvalibleCells() > 1 && runwalkAttempts > 0)
         {
             RandomWalk();
             runwalkAttempts--;
         }
-        
+
+       // GenerateEnemies();
     }
 
     int GetAvalibleCells()
@@ -151,20 +151,20 @@ public class Wilson : Maze
     void GenerateEnemies()
     {
 
-        if(_prob > 0)
-        {
-            for (int z = 1; z < depth - 1; z++)
+          for (int z = 1; z < depth - 1; z++)
             {
                 for (int x = 1; x < width - 1; x++)
                 {
-                    if (map[x, z] == map[startMaze.x, startMaze.z])
+                //Debug.Log(map[x,z]);
+                    if (x==startMaze.x && z==startMaze.z)
                     {
+                        Debug.Log("Entre a la condicion");
                         continue;
                     }
-                    if (map[x, z] == 2   && enemies > 0)
+                    if (map[x, z] == 2  && enemies > 0)
                     {
                       //  Debug.Log();
-                        if(Random.Range(0, 100) < _prob)
+                        if(Random.Range(0, 100) < 50)
                         {
                             Vector3 pos = new(x * scale, 0, z * scale);
                             GameObject enemiesSpawn = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
@@ -175,8 +175,7 @@ public class Wilson : Maze
                         
                     }
                 }
-            }
-        }
+            } 
         
     }
 }

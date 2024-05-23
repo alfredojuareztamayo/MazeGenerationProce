@@ -34,6 +34,15 @@ public class Maze : MonoBehaviour
     [Tooltip("This is the your main character, always will spawn in the start of the maze")]
     public GameObject player;
 
+
+    public List<MapLocation> direction = new List<MapLocation>()
+    {
+    new MapLocation(0,1),
+    new MapLocation(0,-1),
+    new MapLocation(1,0),
+    new MapLocation(-1,0)
+    };
+
     // Start is called before the first frame update
     void Start()
     {

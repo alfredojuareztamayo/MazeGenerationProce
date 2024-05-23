@@ -5,13 +5,7 @@ using UnityEngine;
 
 public class WilsonWithRooms : Maze
 {
-    List<MapLocation> direction = new List<MapLocation>()
-    {
-    new MapLocation(0,1),
-    new MapLocation(0,-1),
-    new MapLocation(1,0),
-    new MapLocation(-1,0)
-    };
+   
 
     List<MapLocation> notUsed = new List<MapLocation>();
     public override void Generate()

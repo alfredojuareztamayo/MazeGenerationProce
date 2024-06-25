@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float speed = 5.0f;  // Player's movement speed
+    public float speed;  // Player's movement speed
     public float mouseSensitivity = 100.0f;  // Sensitivity of mouse movement
     private CharacterController controller;  // Player's CharacterController component
     private float verticalRotation = 0.0f;  // To keep track of the vertical rotation
@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     void Start()
     {
+        speed = GetComponent<PlayerStats>().GetSpeed();
         controller = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;  // Lock the cursor to the center of the screen
     }
@@ -27,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     void Update()
     {
+        speed = GetComponent<PlayerStats>().GetSpeed();
         // Get user input for movement
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");

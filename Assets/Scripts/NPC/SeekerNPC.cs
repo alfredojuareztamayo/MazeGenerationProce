@@ -1,41 +1,61 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SeekerNPC : MonoBehaviour
+public class SeekerNPC : NPCManager
 {
-    public Transform target; // Target para seek, flee, pursuit, evade
-
-    public float slowingDistance = 5f; // Distancia para el comportamiento arrive
-    public float speed = 5f;
-
-   
-
+    public float stateChangeDelay = 0.5f; // Tiempo de retraso antes de cambiar de estado
+    private float lastStateChangeTime;
     void Start()
     {
-   
+        // Llamar al método Start() de NPCManager
+        lastStateChangeTime = Time.time;
     }
 
     void Update()
     {
-        Vector3 steering = Vector3.zero;
-
-        // Ejemplo de cómo llamar a los comportamientos
-        if (target != null)
+        // Comprobar si es tiempo de cambiar de estado
+        if (Time.time - lastStateChangeTime > stateChangeDelay)
         {
-            steering = SteeringBehaviour.Seek(transform, target.position, speed);
-            // steering = SteeringBehaviour.Flee(transform, target.position, speed);
-            // steering = SteeringBehaviour.Arrive(transform, target.position, speed, slowingDistance);
-            // steering = SteeringBehaviour.Pursuit(transform, target, speed);
-            // steering = SteeringBehaviour.Evade(transform, target, speed);
+            // Cambiar a Seek si el target está dentro del radio de percepción
+            if (target != null )
+            {
+                this.status = StatusNPC.Seek;
+            }
+            else
+            {
+                this.status = StatusNPC.Wander;
+            }
+
+            // Actualizar el tiempo del último cambio de estado
+            lastStateChangeTime = Time.time;
         }
-       
 
-        // Aplicar la fuerza de steering al movimiento del NPC
-        Vector3 newPosition = transform.position + steering * Time.deltaTime * speed;
+        HandleStatus(status);
+    }
 
-
-        // Actualizar la posición del NPC
-        transform.position = newPosition;
+    private void HandleStatus(StatusNPC status)
+    {
+        switch (status)
+        {
+            case StatusNPC.None:
+                Debug.Log("Estoy en la inmortalidad del congrejo");
+                break;
+            case StatusNPC.Seek:
+                if (target != null)
+                {
+                    Vector3 seekForce = SteeringBehaviour.Seek(transform, target.position, speed);
+                    ApplySteering(seekForce);
+                }
+                break;
+            case StatusNPC.Flee:
+                Debug.Log("Estoy en la inmortalidad del congrejo");
+                break;
+            case StatusNPC.Wander:
+                Vector3 wanderForce = SteeringBehaviour.Wander(transform, ref targetPosition, wanderRadius, wanderDistance, wanderJitter, areaCenter, areaSize);
+                ApplySteering(wanderForce);
+                break;
+        }
     }
 }

@@ -2,34 +2,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FlyingMob : MonoBehaviour
+public class FlyingMob : NPCManager
 {
-    public float wanderRadius = 5f;
-    public float wanderDistance = 10f;
-    public float wanderJitter = 0.5f;
-    public float speed = 5f;
-    public float fixedHeight = 10f;  // Altura fija para el NPC
-
-    private Vector3 targetPosition;
+    
 
     void Start()
     {
-        // Inicializar la posición objetivo
-        targetPosition = transform.position + Random.insideUnitSphere * wanderRadius;
+        status = StatusNPC.Wander;
     }
 
     void Update()
     {
-        // Obtener la fuerza de wander del método estático
-        Vector3 wanderForce = SteeringBehaviour.Wander(transform, ref targetPosition, wanderRadius, wanderDistance, wanderJitter);
 
-        // Aplicar la fuerza de wander al movimiento del NPC
-        Vector3 newPosition = transform.position + wanderForce * Time.deltaTime * speed;
+        HandleStatus(status);
+    }
 
-        // Mantener la altura fija
-        newPosition.y = fixedHeight;
+    private void HandleStatus(StatusNPC status)
+    {
+        switch (status)
+        {
+            case StatusNPC.None:
+                Debug.Log("Estoy en la inmortalidad del congrejo");
+                break;
+            case StatusNPC.Seek:
+                Debug.Log("Estoy en la inmortalidad del congrejo");
+                break;
+            case StatusNPC.Flee:
+                Debug.Log("Estoy en la inmortalidad del congrejo");
+                break;
+            case StatusNPC.Wander:
+                Vector3 wanderForce = SteeringBehaviour.Wander(transform, ref targetPosition, wanderRadius, wanderDistance, wanderJitter, areaCenter, areaSize);
+                ApplySteering(wanderForce);
+                break;
+        }
 
-        // Actualizar la posición del NPC
-        transform.position = newPosition;
     }
 }

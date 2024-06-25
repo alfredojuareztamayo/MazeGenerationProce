@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2585956455682987626
+--- !u!1 &4342564851930724125
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,50 +8,50 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8282483113083940003}
-  - component: {fileID: 9159814877015872790}
-  - component: {fileID: 7494967065342164546}
-  - component: {fileID: 8282361878259335506}
-  - component: {fileID: 7337655220344139485}
-  - component: {fileID: 2882867098737507353}
-  - component: {fileID: 7766834696578469219}
+  - component: {fileID: 304531778899662108}
+  - component: {fileID: 4313502357388787315}
+  - component: {fileID: 1032772910915946654}
+  - component: {fileID: 5067861290591638049}
+  - component: {fileID: 2014065629349385116}
+  - component: {fileID: 3801533745640519087}
+  - component: {fileID: 6832993346817228298}
   m_Layer: 0
-  m_Name: FlyingNPC
+  m_Name: Seeker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!4 &8282483113083940003
+--- !u!4 &304531778899662108
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2585956455682987626}
+  m_GameObject: {fileID: 4342564851930724125}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.1557288, y: -0.2, z: 18}
+  m_LocalPosition: {x: -0.2805876, y: 14.9, z: 24}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &9159814877015872790
+--- !u!33 &4313502357388787315
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2585956455682987626}
+  m_GameObject: {fileID: 4342564851930724125}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &7494967065342164546
+--- !u!23 &1032772910915946654
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2585956455682987626}
+  m_GameObject: {fileID: 4342564851930724125}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -87,34 +87,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &8282361878259335506
+--- !u!135 &5067861290591638049
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2585956455682987626}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!135 &7337655220344139485
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2585956455682987626}
+  m_GameObject: {fileID: 4342564851930724125}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -129,44 +108,15 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 15
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2882867098737507353
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2585956455682987626}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99501c0b044558641a1908abc092df9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  wanderRadius: 5
-  wanderDistance: 5
-  wanderJitter: 1
-  slowingDistance: 5
-  speed: 5
-  perceptionRadius: 10
-  maxHealth: 100
-  currentHealth: 0
-  armor: 10
-  damage: 20
-  status: 3
-  targetPosition: {x: 0, y: 0, z: 0}
-  steering: {x: 0, y: 0, z: 0}
-  fixedHeight: 3
-  areaCenter: {x: 0, y: 0, z: 0}
-  areaSize: {x: 0, y: 0, z: 0}
-  target: {fileID: 0}
---- !u!54 &7766834696578469219
+--- !u!54 &2014065629349385116
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2585956455682987626}
+  m_GameObject: {fileID: 4342564851930724125}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 20
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -180,8 +130,59 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &3801533745640519087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4342564851930724125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee508c7fab1236b46b855a823a408ce1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wanderRadius: 5
+  wanderDistance: 10
+  wanderJitter: 0.5
+  slowingDistance: 5
+  speed: 5
+  perceptionRadius: 15
+  maxHealth: 100
+  currentHealth: 0
+  armor: 10
+  damage: 20
+  status: 3
+  targetPosition: {x: 0, y: 0, z: 0}
+  steering: {x: 0, y: 0, z: 0}
+  fixedHeight: 0.2
+  areaCenter: {x: 0, y: 0, z: 0}
+  areaSize: {x: 10, y: 0, z: 10}
+  target: {fileID: 0}
+  stateChangeDelay: 1
+--- !u!135 &6832993346817228298
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4342564851930724125}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}

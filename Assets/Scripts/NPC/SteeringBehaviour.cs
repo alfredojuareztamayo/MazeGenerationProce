@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class SteeringBehaviour : MonoBehaviour
 {
-    public static Vector3 Wander(Transform entityTransform, ref Vector3 targetPosition, float wanderRadius, float wanderDistance, float wanderJitter)
+    public static Vector3 Wander(Transform entityTransform, ref Vector3 targetPosition, float wanderRadius, float wanderDistance, float wanderJitter, Vector3 areaCenter, Vector3 areaSize)
     {
         // Calcular el desplazamiento aleatorio
-        Vector3 randomPoint = Random.insideUnitSphere * wanderJitter;
+        Vector3 randomPoint = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)) * wanderJitter;
 
         // Actualizar la posición objetivo
         targetPosition += randomPoint;
@@ -15,11 +15,12 @@ public class SteeringBehaviour : MonoBehaviour
         // Restringir la posición objetivo al radio de vagar
         targetPosition = entityTransform.position + Vector3.ClampMagnitude(targetPosition - entityTransform.position, wanderRadius);
 
-        // Mover la posición objetivo hacia adelante a la distancia de vagar
-        Vector3 targetLocal = targetPosition + entityTransform.forward * wanderDistance;
+        // Mantener la posición objetivo dentro de los límites del área
+        targetPosition.x = Mathf.Clamp(targetPosition.x, areaCenter.x - areaSize.x / 2, areaCenter.x + areaSize.x / 2);
+        targetPosition.z = Mathf.Clamp(targetPosition.z, areaCenter.z - areaSize.z / 2, areaCenter.z + areaSize.z / 2);
 
         // Calcular la fuerza de dirección
-        Vector3 wanderForce = targetLocal - entityTransform.position;
+        Vector3 wanderForce = targetPosition - entityTransform.position;
         return wanderForce.normalized;
     }
 

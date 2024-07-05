@@ -1,0 +1,46 @@
+{
+    "name": "PlayerController",
+    "maps": [
+        {
+            "name": "Gameplay",
+            "id": "a34aa1a5-b211-44d4-9add-c9b8b81604ed",
+            "actions": [
+                {
+                    "name": "Move",
+                    "type": "Button",
+                    "id": "6ecadeab-26b7-47e0-b60c-6621509976cc",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "1e9d809e-ef3c-4d56-9910-05cd06c81efb",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gameplay",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "Gameplay",
+            "bindingGroup": "Gameplay",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}

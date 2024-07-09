@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 449947808180802403}
   - component: {fileID: 3031977507400820211}
   m_Layer: 0
-  m_Name: PlatformAtoB
+  m_Name: PlatformAtoBWithTime
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

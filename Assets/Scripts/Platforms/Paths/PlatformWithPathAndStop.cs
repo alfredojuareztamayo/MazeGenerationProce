@@ -23,11 +23,7 @@ public class PlatformWithPathAndStop : PlatformBase
             StartCoroutine(TimeToStopInPaths());
         }
     }
-    public override void ChangeMaterialStart()
-    {
-        GetComponent<MeshRenderer>().material = material;
-    }
-
+ 
     IEnumerator TimeToStopInPaths()
     {
         isMoving = true;

@@ -72,7 +72,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7806214740046741799}
   m_Layer: 0
-  m_Name: PathsAtoB
+  m_Name: PathsAtoBWithTime
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

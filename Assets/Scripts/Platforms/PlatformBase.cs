@@ -30,5 +30,13 @@ public abstract class PlatformBase : MonoBehaviour
         BehaviourPlatform();
     }
     public abstract void BehaviourPlatform();
-    public abstract void ChangeMaterialStart();
+    protected virtual void ChangeMaterialStart()
+    {
+        if (material != null)
+        {
+
+            GetComponent<MeshRenderer>().material = material;
+        }
+    }
+        
 }

@@ -29,12 +29,5 @@ public class PlatformPathsAtoB : PlatformBase
             currentDirection = (currentDirection + 1) % direccionAtoB.Length;
         }
     }
-    public override void ChangeMaterialStart()
-    {
-        if (material != null)
-        {
-            // Cambiar el material del MeshRenderer
-            GetComponent<MeshRenderer>().material = material;
-        }
-    }
+   
 }

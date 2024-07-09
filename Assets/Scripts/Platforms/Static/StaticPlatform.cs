@@ -8,8 +8,5 @@ public class StaticPlatform : PlatformBase
     {
         // La plataforma estática no hace nada en el método BehaviourPlatform
     }
-    public override void ChangeMaterialStart()
-    {
-        GetComponent<MeshRenderer>().material = material;
-    }
+    
 }

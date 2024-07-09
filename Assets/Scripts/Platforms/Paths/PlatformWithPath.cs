@@ -23,8 +23,5 @@ public class PlatformWithPath : PlatformBase
             currentPath = (currentPath + 1) % paths.Length;
         }
     }
-    public override void ChangeMaterialStart()
-    {
-        GetComponent<MeshRenderer>().material = material;
-    }
+   
 }

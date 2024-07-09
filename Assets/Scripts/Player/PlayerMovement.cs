@@ -36,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
 
         // Move the player
         controller.Move(movement * speed * Time.deltaTime);
+        
 
         // Get mouse input for rotation
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -11,7 +9,11 @@ public class PlayerMovement : MonoBehaviour
     public Camera cameraPlayer;
     public float clampCameraTop, clampCameraBottom;
 
-    //public GameObject inventoryItem = null;  // Currently held inventory item
+    // Variables para la gravedad y el salto
+    public float jumpForce = 5f;
+    public float gravity = -9.81f;
+    private Vector3 velocity;
+    private bool isGrounded;
 
     /// <summary>
     /// Initializes the CharacterController component.
@@ -29,6 +31,16 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         speed = GetComponent<PlayerStats>().GetSpeed();
+
+        // Comprobar si el personaje está en el suelo
+        isGrounded = controller.isGrounded;
+
+        // Resetear la velocidad en Y si el personaje está en el suelo
+        if (isGrounded && velocity.y < 0)
+        {
+            velocity.y = -2f; // Pequeño empuje hacia abajo para asegurar que el personaje se quede pegado al suelo
+        }
+
         // Get user input for movement
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
@@ -36,7 +48,6 @@ public class PlayerMovement : MonoBehaviour
 
         // Move the player
         controller.Move(movement * speed * Time.deltaTime);
-        
 
         // Get mouse input for rotation
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
@@ -51,5 +62,17 @@ public class PlayerMovement : MonoBehaviour
 
         // Apply the vertical rotation to the camera
         cameraPlayer.transform.localRotation = Quaternion.Euler(verticalRotation, 0.0f, 0.0f);
+
+        // Saltar
+        if (Input.GetButtonDown("Jump") && isGrounded)
+        {
+            velocity.y = Mathf.Sqrt(jumpForce * -2f * gravity);
+        }
+
+        // Aplicar gravedad
+        velocity.y += gravity * Time.deltaTime;
+
+        // Mover al jugador basado en la velocidad calculada
+        controller.Move(velocity * Time.deltaTime);
     }
 }

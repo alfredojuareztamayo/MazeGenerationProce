@@ -728,7 +728,7 @@ MonoBehaviour:
   cameraPlayer: {fileID: 2676090009471335173}
   clampCameraTop: 45
   clampCameraBottom: 45
-  jumpForce: 5
+  jumpForce: 1
   gravity: -9.81
 --- !u!143 &5713768236363920264
 CharacterController:

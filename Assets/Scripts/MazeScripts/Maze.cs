@@ -43,6 +43,10 @@ public class Maze : MonoBehaviour
     new MapLocation(-1,0)
     };
 
+    public Transform positionMaze;
+    public bool HorizontalOrVertical = false;
+    private List<GameObject> walls = new List<GameObject>();
+
     // Start is called before the first frame update
     void Start()
     {
@@ -91,16 +95,25 @@ public class Maze : MonoBehaviour
 
     void DrawMap()
     {
+        Vector3 pos = new Vector3(0,0,0);
         for (int z = 0; z < depth; z++)
         {
             for (int x = 0; x < width; x++)
             {
-                Vector3 pos = new (x*scale, 0, z*scale);
+                if (!HorizontalOrVertical)
+                {
+                     pos = new((x * scale) + positionMaze.position.x, positionMaze.position.y, (z * scale) + positionMaze.position.z);
+                }
+                else
+                {
+                    pos = new((x * scale) + positionMaze.position.x, (z * scale) + positionMaze.position.y,  positionMaze.position.z);
+                }
                 if (map[x, z] == 1)
                 {
                     GameObject wall = GameObject.CreatePrimitive(PrimitiveType.Cube);
                     wall.transform.localScale = new(scale,scale,scale);
                     wall.transform.position = pos;
+                    walls.Add(wall);
                 }
 
             }
@@ -132,5 +145,31 @@ public class Maze : MonoBehaviour
     public int CountAllNeighbours(int x, int z)
     {
         return CountDiagonalNeighbours(x, z) + CountSquareNeighbours(x,z);
+    }
+
+    public void ResetMaze()
+    {
+        foreach (GameObject wall in walls)
+        {
+            Destroy(wall);
+        }
+        walls.Clear();
+
+       CreateMaze();
+    }
+    public void CreateMaze()
+    {
+        InitialiseMap();
+        Generate();
+        DrawMap();
+    }
+
+    public void DestroyMaze()
+    {
+        foreach (GameObject wall in walls)
+        {
+            Destroy(wall);
+        }
+        walls.Clear();
     }
 }

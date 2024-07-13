@@ -13,8 +13,7 @@ public class Teleport : MonoBehaviour
     {
         if (other.CompareTag(TagPLayer))
         {
-            Debug.Log("Entre=)");
-            Debug.Log("Antes de teletransportar: " + other.gameObject.transform.position);
+           
 
             CharacterController characterController = other.GetComponent<CharacterController>();
             if (characterController != null)
@@ -27,8 +26,6 @@ public class Teleport : MonoBehaviour
             {
                 other.transform.position = pointToTeleport.transform.position;
             }
-
-            Debug.Log("Después de teletransportar: " + other.gameObject.transform.position);
         }
         else
         {

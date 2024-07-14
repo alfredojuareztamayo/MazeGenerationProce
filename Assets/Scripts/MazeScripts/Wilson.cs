@@ -46,7 +46,7 @@ public class Wilson : Maze
         //final.transform.localScale = new(scale, scale, scale);
         final.transform.position = pos;
 
-        Instantiate(player, new Vector3(startMaze.x*scale, 5, startMaze.z * scale), Quaternion.identity);
+       // Instantiate(player, new Vector3(startMaze.x*scale, 5, startMaze.z * scale), Quaternion.identity);
         
 
 

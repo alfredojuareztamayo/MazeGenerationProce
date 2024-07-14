@@ -30,11 +30,6 @@ public class Maze : MonoBehaviour
     [Tooltip("This is the scale of your maze")]
     public int scale = 6;
 
-
-    [Tooltip("This is the your main character, always will spawn in the start of the maze")]
-    public GameObject player;
-
-
     public List<MapLocation> direction = new List<MapLocation>()
     {
     new MapLocation(0,1),
@@ -50,9 +45,9 @@ public class Maze : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InitialiseMap();
-        Generate();
-        DrawMap();
+        //InitialiseMap();
+       // Generate();
+       // DrawMap();
     }
     /// <summary>
     /// Function to initialise the map 
@@ -159,9 +154,12 @@ public class Maze : MonoBehaviour
     }
     public void CreateMaze()
     {
+        if(walls.Count == 0)
+        {
         InitialiseMap();
         Generate();
         DrawMap();
+        }
     }
 
     public void DestroyMaze()

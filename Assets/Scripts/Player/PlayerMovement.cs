@@ -15,19 +15,17 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 velocity;
     private bool isGrounded;
 
-    /// <summary>
-    /// Initializes the CharacterController component.
-    /// </summary>
+    public GameObject pointToTeleport;
+    private Transform originalParent;
+
     void Start()
     {
         speed = GetComponent<PlayerStats>().GetSpeed();
         controller = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;  // Lock the cursor to the center of the screen
+        originalParent = transform.parent;
     }
 
-    /// <summary>
-    /// Handles user input for moving the player and picking up/dropping items.
-    /// </summary>
     void Update()
     {
         speed = GetComponent<PlayerStats>().GetSpeed();
@@ -74,5 +72,37 @@ public class PlayerMovement : MonoBehaviour
 
         // Mover al jugador basado en la velocidad calculada
         controller.Move(velocity * Time.deltaTime);
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            TeleportToBase();
+        }
+    }
+
+    void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (hit.collider.CompareTag("Platform"))
+        {
+            transform.SetParent(hit.collider.transform);
+        }
+        else
+        {
+            transform.SetParent(originalParent);
+        }
+    }
+
+    public void TeleportToBase()
+    {
+        CharacterController characterController = GetComponent<CharacterController>();
+        if (characterController != null)
+        {
+            characterController.enabled = false; // Deshabilitar el CharacterController
+            transform.position = pointToTeleport.transform.position;
+            characterController.enabled = true; // Habilitar el CharacterController
+        }
+        else
+        {
+            transform.position = pointToTeleport.transform.position;
+        }
     }
 }

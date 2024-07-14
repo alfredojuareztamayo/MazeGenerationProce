@@ -9,6 +9,7 @@ public class PlatformPathsAtoB : PlatformBase
     public Transform directionA;
     public Transform directionB;
     private int currentDirection = 0;
+    
     protected override void Start()
     {
         base.Start();
@@ -29,5 +30,5 @@ public class PlatformPathsAtoB : PlatformBase
             currentDirection = (currentDirection + 1) % direccionAtoB.Length;
         }
     }
-   
+    
 }

@@ -6,8 +6,8 @@ public class CollectableItems : MonoBehaviour
 {
     private Collider itemCollider;
     private Renderer itemRenderer;
-    protected float timeSpawn = 10f;
-    public float upgradeHealth, upgradeMaxHealth, upgradeArmor, upgradeSpeed;
+    public float timeSpawn = 10f;
+    public float upgradeHealth, upgradeMaxHealth, upgradeArmor, upgradeSpeed, upgradeJump;
     // Start is called before the first frame update
     void Start()
     {

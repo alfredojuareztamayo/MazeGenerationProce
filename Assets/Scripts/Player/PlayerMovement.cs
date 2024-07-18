@@ -29,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         speed = GetComponent<PlayerStats>().GetSpeed();
-
+        jumpForce = GetComponent<PlayerStats>().GetJump();
         // Comprobar si el personaje está en el suelo
         isGrounded = controller.isGrounded;
 

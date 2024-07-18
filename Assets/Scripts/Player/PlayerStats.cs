@@ -8,6 +8,7 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] float currentHealth;
     [SerializeField] float armor = 100;
     [SerializeField] float speed = 5f;
+    [SerializeField] float jump = 1f;
     [SerializeField] string Name = "";
 
 
@@ -109,4 +110,9 @@ public class PlayerStats : MonoBehaviour
     {
         return Name;
     }
+    public void UpgradeJump(float _jump)
+    {
+        this.jump = _jump;
+    }
+    public float GetJump() { return this.jump; }
 }

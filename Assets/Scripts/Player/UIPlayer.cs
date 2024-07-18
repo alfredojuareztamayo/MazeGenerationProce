@@ -11,6 +11,7 @@ public class UIPlayer : MonoBehaviour
     public Text Speed;
     public Text Health;
     public Scrollbar HealthBar;
+    public Text Jump;
    
     private PlayerStats playerStats;
     // Start is called before the first frame update
@@ -26,6 +27,7 @@ public class UIPlayer : MonoBehaviour
         Health.text = "Health " + playerStats.GetCurrentHealth().ToString();
         Armor.text = "Armor " + playerStats.GetArmor().ToString();
         Speed.text = "Speed " + playerStats.GetSpeed().ToString();
+        Jump.text = "Jump " + playerStats.GetJump().ToString();
         HealthBar.size = playerStats.GetCurrentHealth()/ playerStats.GetMaxHealth();
     }
 }

@@ -42,6 +42,8 @@ public class Maze : MonoBehaviour
     public bool HorizontalOrVertical = false;
     private List<GameObject> walls = new List<GameObject>();
 
+    public GameObject WallsCube;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -105,7 +107,8 @@ public class Maze : MonoBehaviour
                 }
                 if (map[x, z] == 1)
                 {
-                    GameObject wall = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                    //GameObject wall = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                    GameObject wall = Instantiate(WallsCube);
                     wall.transform.localScale = new(scale,scale,scale);
                     wall.transform.position = pos;
                     walls.Add(wall);

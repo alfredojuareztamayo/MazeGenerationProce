@@ -95,7 +95,7 @@ public class PlayerStats : MonoBehaviour
     }
     public void UpgradeMaxHealth(float maxHealth)
     {
-        this.MaxHealth -= maxHealth;
+        this.MaxHealth += maxHealth;
     }
     public void UpgradeSpeed(float speed)
     {
@@ -103,7 +103,7 @@ public class PlayerStats : MonoBehaviour
     }
     public void UpgradeArmor(float armor)
     {
-        this.armor = armor;
+        this.armor += armor;
     }
 
     public string GetName()
@@ -112,7 +112,7 @@ public class PlayerStats : MonoBehaviour
     }
     public void UpgradeJump(float _jump)
     {
-        this.jump = _jump;
+        this.jump += _jump;
     }
     public float GetJump() { return this.jump; }
 }

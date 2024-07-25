@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -36403,6 +36403,9 @@ MonoBehaviour:
   ItemId: 1
   Reactivate: 1
   ReactTime: 5
+  Renderer: {fileID: 351333842}
+  RendererLiquid: {fileID: 1168336014}
+  Collider: {fileID: 351333841}
 --- !u!64 &351333841
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -36676,7 +36679,7 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: 57519579}
 --- !u!33 &393833805
 MeshFilter:
   m_ObjectHideFlags: 10
@@ -52657,6 +52660,9 @@ MonoBehaviour:
   ItemId: 0
   Reactivate: 1
   ReactTime: 5
+  Renderer: {fileID: 635230077}
+  RendererLiquid: {fileID: 389551664}
+  Collider: {fileID: 635230076}
 --- !u!1 &640944346
 GameObject:
   m_ObjectHideFlags: 0
@@ -68055,6 +68061,9 @@ MonoBehaviour:
   ItemId: 0
   Reactivate: 0
   ReactTime: 5
+  Renderer: {fileID: 959917066}
+  RendererLiquid: {fileID: 63997534}
+  Collider: {fileID: 959917065}
 --- !u!64 &959917065
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -89189,6 +89198,9 @@ MonoBehaviour:
   ItemId: 1
   Reactivate: 0
   ReactTime: 5
+  Renderer: {fileID: 1764881753}
+  RendererLiquid: {fileID: 1517357333}
+  Collider: {fileID: 1764881752}
 --- !u!64 &1764881752
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -105375,6 +105387,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1987857424}
+  - component: {fileID: 1987857425}
   m_Layer: 0
   m_Name: CanvasManager
   m_TagString: Untagged
@@ -105408,6 +105421,25 @@ Transform:
   - {fileID: 1203069614}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1987857425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1987857423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea8e8ae4451fb5c4990ea8917d02fd25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: {fileID: 8060598159332788565}
+  Armor: {fileID: 7246207107207351485}
+  Speed: {fileID: 8258422023518535294}
+  Health: {fileID: 3226446605864077638}
+  HealthBar: {fileID: 8973603652846868593}
+  Jump: {fileID: 212010150}
+  canvasStats: {fileID: 8604767905589682421}
 --- !u!1 &1990670020
 GameObject:
   m_ObjectHideFlags: 0
@@ -106866,24 +106898,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 190c23ea08cf02243a2dfdf74ad7bb97, type: 3}
---- !u!114 &2245721479906445581
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8604767905589682421}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea8e8ae4451fb5c4990ea8917d02fd25, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Name: {fileID: 8060598159332788565}
-  Armor: {fileID: 7246207107207351485}
-  Speed: {fileID: 8258422023518535294}
-  Health: {fileID: 3226446605864077638}
-  HealthBar: {fileID: 8973603652846868593}
-  Jump: {fileID: 212010150}
 --- !u!224 &2491388372297726370
 RectTransform:
   m_ObjectHideFlags: 0
@@ -107042,7 +107056,7 @@ Transform:
   m_GameObject: {fileID: 2823995887991033219}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.71066296, z: -0, w: 0.70353264}
-  m_LocalPosition: {x: 8.67, y: -0.26, z: -2.3}
+  m_LocalPosition: {x: -97.14, y: -0.26, z: -95.54}
   m_LocalScale: {x: 0.67297, y: 0.67297, z: 0.67297}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -107832,7 +107846,6 @@ GameObject:
   - component: {fileID: 5630976853223487398}
   - component: {fileID: 1324655203817459397}
   - component: {fileID: 3032231090086398141}
-  - component: {fileID: 2245721479906445581}
   m_Layer: 5
   m_Name: UIPlayer
   m_TagString: Untagged

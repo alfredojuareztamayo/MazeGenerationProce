@@ -8,6 +8,9 @@ public class Item : MonoBehaviour
     ItemManager itemManager;
     public bool Reactivate;
     public float ReactTime = 0;
+    public Renderer Renderer;
+    public Renderer RendererLiquid;
+    public Collider Collider;
    
 
     private void Start()
@@ -30,9 +33,13 @@ public class Item : MonoBehaviour
 
     IEnumerator TurnOffOnItem(float time)
     {
-        gameObject.SetActive(false);
+        Renderer.enabled = false;
+        RendererLiquid.enabled = false;
+        Collider.enabled = false;
         itemManager.ApplyEffects(ItemId);
         yield return new WaitForSeconds(time);
-        gameObject.SetActive(true);
+        Renderer.enabled = true;
+        RendererLiquid.enabled = true;
+        Collider.enabled=true;
     }
 }

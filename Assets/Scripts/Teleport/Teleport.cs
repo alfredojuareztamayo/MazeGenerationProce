@@ -5,13 +5,11 @@ using UnityEngine;
 public class Teleport : MonoBehaviour
 {
     public GameObject pointToTeleport;
-   
-    public string TagPLayer;
 
     // Start is called before the first frame update
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag(TagPLayer))
+        if (other.CompareTag("Player"))
         {
            
 

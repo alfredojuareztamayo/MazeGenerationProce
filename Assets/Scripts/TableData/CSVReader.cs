@@ -8,11 +8,16 @@ public class CSVReader : MonoBehaviour
     public TextAsset textAssetData;
 
     [System.Serializable]
-    public  class Dialogue
+    public class Dialogue
     {
         public string[] Alldialogues;
-        
+
+        public Dialogue(int languageCount)
+        {
+            Alldialogues = new string[languageCount];
+        }
     }
+
     [System.Serializable]
     public class DialogueList
     {
@@ -26,22 +31,36 @@ public class CSVReader : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ReadCSV(Rows, Cols);
+        if (textAssetData != null)
+        {
+            ReadCSV(Rows, Cols);
+        }
+        else
+        {
+            Debug.LogError("textAssetData is null. Please assign a CSV file in the inspector.");
+        }
     }
 
-    void ReadCSV(int numberOfRow, int numberOfColumns)
+    void ReadCSV(int numberOfRows, int numberOfColumns)
     {
-        string[] dataCSV = textAssetData.text.Split(new String[] { ",", "\n" },StringSplitOptions.None);
-        int tableSize = dataCSV.Length / numberOfColumns - 1;
-        dialogueList.dialogues = new Dialogue[tableSize];
-        for (int i = 0; i < tableSize; i++)
+        if (textAssetData == null)
         {
-            dialogueList.dialogues[i] = new Dialogue();
-            for(int j = 0; j < numberOfRow; j++)
-            {
-                dialogueList.dialogues[i].Alldialogues[j] = dataCSV[numberOfColumns * (i + 1)];
-            }
+            Debug.LogError("textAssetData is null.");
+            return;
         }
 
+        string[] dataCSV = textAssetData.text.Split(new string[] { "\n" }, StringSplitOptions.None);
+        int tableSize = numberOfRows - 1; // Ignoramos la fila de cabecera
+        dialogueList.dialogues = new Dialogue[tableSize];
+
+        for (int i = 0; i < tableSize; i++)
+        {
+            dialogueList.dialogues[i] = new Dialogue(numberOfColumns);
+            string[] rowData = dataCSV[i + 1].Split(new string[] { "," }, StringSplitOptions.None);
+            for (int j = 0; j < numberOfColumns; j++)
+            {
+                dialogueList.dialogues[i].Alldialogues[j] = rowData[j].Trim();
+            }
+        }
     }
 }

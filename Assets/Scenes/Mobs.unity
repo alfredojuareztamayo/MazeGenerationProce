@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -34909,7 +34909,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9ebd364bab24834a832c979538e75b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textAssetData: {fileID: 4900000, guid: 898f6f2e630f7204b90218f299f5ea4d, type: 3}
+  textAssetData: {fileID: 4900000, guid: 3a4aa0c3d69c37d41b6a543baf5fb3ba, type: 3}
   dialogueList:
     dialogues: []
   Rows: 5

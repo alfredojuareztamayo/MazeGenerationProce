@@ -28,8 +28,9 @@ public class CSVReader : MonoBehaviour
     public int Rows;
     public int Cols;
 
+  
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         if (textAssetData != null)
         {

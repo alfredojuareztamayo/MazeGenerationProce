@@ -10,23 +10,45 @@ public class DialogueManager : MonoBehaviour
 {
     public CSVReader reader;
     int iter = 0;
-    int iterLenguage = 3;
+    int iterLenguage = 0;
     [Header("List of text to be changed with excel")]
     public List<TMP_Text> list = new List<TMP_Text>();
+    public GameObject canvasMenu;
+    private bool turnOnOffMenu = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        changeIdiom();  
-       // Invoke("changeIdiom",0.1f);  //default english,
+        canvasMenu.SetActive(turnOnOffMenu);
+        ChangeIdiom();
+        // Invoke("changeIdiom",0.1f);  //default english,
     }
+    private void Update()
+    {
 
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            turnOnOffMenu = !turnOnOffMenu;
+            canvasMenu.SetActive(turnOnOffMenu);
+            if (turnOnOffMenu)
+            {
+                Time.timeScale = 0;
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
+            }
+            else
+            {
+                Time.timeScale = 1;
+                Cursor.visible = false;
+            }
+        }
+    }
     public void SetIdiom(int id)
     {
         iterLenguage = id;
     }
 
-    public void changeIdiom()
+    public void ChangeIdiom()
     {
         if (reader.dialogueList.dialogues.Length == 0)
         {

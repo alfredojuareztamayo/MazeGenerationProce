@@ -49,20 +49,18 @@ public class GenerateWindowsSDK : EditorWindow
         return false;
     }
     //[MenuItem("Component/SDK_Sleekhell/Platforms")]
-    [MenuItem("Component/SDK_Sleekhell/Platforms/AtoBPrefab")]
+    [MenuItem("GameObject/SDK_Sleekhell/Platforms/AtoBPrefab")]
     private static void CreateAtoBPlatform()
     {
-        GameObject selecte = Selection.activeGameObject;
-        if (selecte != null)
-        {
+       
             GameObject prefab = Resources.Load<GameObject>("Prefab/Platform/PlatformAtoB/AtoBnoTime/PlatformAtoB");
             GameObject prefab2 = Resources.Load<GameObject>("Prefab/Platform/PlatformAtoB/AtoBnoTime/PathsAtoB");
             if (prefab2 != null && prefab !=null)
             {
-                GameObject instance = (GameObject)PrefabUtility.InstantiatePrefab(prefab, selecte.transform);
+                GameObject instance = (GameObject)PrefabUtility.InstantiatePrefab(prefab);
                 instance.name = prefab.name; // Opcional: asegura que el nombre del objeto instanciado sea igual al prefab
                 Undo.RegisterCreatedObjectUndo(instance, "Create AtoB Platform");
-                GameObject instance2 = (GameObject)PrefabUtility.InstantiatePrefab(prefab2, selecte.transform);
+                GameObject instance2 = (GameObject)PrefabUtility.InstantiatePrefab(prefab2);
                 instance2.name = prefab2.name; // Opcional: asegura que el nombre del objeto instanciado sea igual al prefab
                 Undo.RegisterCreatedObjectUndo(instance2, "Create AtoB Platform Path");
 
@@ -71,11 +69,7 @@ public class GenerateWindowsSDK : EditorWindow
             {
                 Debug.LogError("<color=blue>Prefab 'AtoB' no encontrado en Resources/Prefabs/atob.</color>");
             }
-        }
-        else
-        {
-            Debug.Log("<color=green>No GameObject Selected</color>");
-        }
+        
     }
 
     [MenuItem("Component/SDK_Sleekhell/Platforms/AtoB")]
@@ -94,5 +88,77 @@ public class GenerateWindowsSDK : EditorWindow
         {
             Debug.Log("<color=green>No GameObject Selected</color>");
         }
+    }
+    [MenuItem("GameObject/SDK_Sleekhell/Platforms/AtoBTimePrefab")]
+    private static void CreateToAtoBTimePrefab()
+    {
+        
+            GameObject prefab = Resources.Load<GameObject>("Prefab/Platform/PlatformAtoB/AtoBTime/PlatformAtoBWithTime");
+            GameObject prefab2 = Resources.Load<GameObject>("Prefab/Platform/PlatformAtoB/AtoBTime/PathsAtoBWithTime");
+            if (prefab2 != null && prefab != null)
+            {
+                GameObject instance = (GameObject)PrefabUtility.InstantiatePrefab(prefab);
+                instance.name = prefab.name; // Opcional: asegura que el nombre del objeto instanciado sea igual al prefab
+                Undo.RegisterCreatedObjectUndo(instance, "Create AtoBTime Platform");
+                GameObject instance2 = (GameObject)PrefabUtility.InstantiatePrefab(prefab2);
+                instance2.name = prefab2.name; // Opcional: asegura que el nombre del objeto instanciado sea igual al prefab
+                Undo.RegisterCreatedObjectUndo(instance2, "Create AtoBTime Platform Path");
+
+            }
+            else
+            {
+                Debug.LogError("<color=blue>Prefab 'AtoB' no encontrado en Resources/Prefabs/atob.</color>");
+            }
+       
+    }
+    [MenuItem("Component/SDK_Sleekhell/Platforms/AtoBTime")]
+    private static void CreateAtoBWithTimePlatformScript()
+    {
+        GameObject selected = Selection.activeGameObject;
+        if (selected)
+        {
+            if (CheckTagExist("Platform"))
+            {
+                selected.tag = "Platform";
+            }
+            else
+            {
+                Debug.Log($"<color=blue>Missing Teleport Tag</color>");
+            }
+            if (selected.GetComponent<BoxCollider>() == null)
+            {
+                Undo.AddComponent<BoxCollider>(selected);
+            }
+            Undo.AddComponent<PlatformPathAtoBTime>(selected);
+        }
+        else
+        {
+            Debug.Log("<color=green>No GameObject Selected</color>");
+        }
+
+    }
+
+    [MenuItem("GameObject/SDK_Sleekhell/Platforms/PlatformPaths")]
+    private static void CreatePlatformPathsPrefab()
+    {
+        
+            GameObject prefab = Resources.Load<GameObject>("Prefab/Platform/PlatformWithPath/PathwithoutTime/PlatformWithPath");
+            GameObject prefab2 = Resources.Load<GameObject>("Prefab/Platform/PlatformWithPath/PathwithoutTime/PathsToFollow");
+            if (prefab2 != null && prefab != null)
+            {
+            
+                GameObject instance = (GameObject)PrefabUtility.InstantiatePrefab(prefab);
+                instance.name = prefab.name; // Opcional: asegura que el nombre del objeto instanciado sea igual al prefab
+                Undo.RegisterCreatedObjectUndo(instance, "Create paths Platform");
+                GameObject instance2 = (GameObject)PrefabUtility.InstantiatePrefab(prefab2);
+                instance2.name = prefab2.name; // Opcional: asegura que el nombre del objeto instanciado sea igual al prefab
+                Undo.RegisterCreatedObjectUndo(instance2, "Create paths Platform Path");
+
+            }
+            else
+            {
+                Debug.LogError("<color=blue>Prefab 'AtoB' no encontrado en Resources/Prefabs/atob.</color>");
+            }
+        
     }
 }

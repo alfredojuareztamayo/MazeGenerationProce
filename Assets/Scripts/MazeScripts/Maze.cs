@@ -84,11 +84,16 @@ public class Maze : MonoBehaviour
     /// <summary>
     /// Initializes the maze map with walls.
     /// </summary>
+    public bool isDemo = true;
     void Start()
     {
-        //InitialiseMap();
-        //Generate();
-        //DrawMap();
+        if (!isDemo)
+        {
+            InitialiseMap();
+            Generate();
+            DrawMap();
+         }
+
     }
 
     /// <summary>

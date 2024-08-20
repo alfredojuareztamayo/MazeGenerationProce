@@ -15,11 +15,6 @@ public class GenerateWindowsSDK : EditorWindow
         GetWindow<GenerateWindowsSDK>("SDK Sleekhell");
     }
 
-
-    private void OnGUI()
-    {
-        
-    }
     [MenuItem("Component/SDK_Sleekhell/Teleport")]
     private static void TeleportAction()
     {
@@ -47,6 +42,22 @@ public class GenerateWindowsSDK : EditorWindow
             }
         }
         return false;
+    }
+    [MenuItem("GameObject/SDK_Sleekhell/Teleport")]
+    private static void CreateTeleportPrefab()
+    {
+        GameObject prefab = Resources.Load<GameObject>("Prefab/Teleport/TeleportPrefab");
+        if (prefab == null)
+        {
+            GameObject instance = (GameObject)PrefabUtility.InstantiatePrefab(prefab);
+            instance.name = prefab.name;
+            Undo.RegisterCreatedObjectUndo(instance, "Create Teleport Prefab");
+        }
+        else
+        {
+            Debug.LogError("<color=blue>Prefab 'Teleport' no encontrado en Resources/Prefab/Teleport/TeleportPrefab.</color>");
+        }
+
     }
     //[MenuItem("Component/SDK_Sleekhell/Platforms")]
     [MenuItem("GameObject/SDK_Sleekhell/Platforms/AtoBPrefab")]
@@ -107,7 +118,7 @@ public class GenerateWindowsSDK : EditorWindow
             }
             else
             {
-                Debug.LogError("<color=blue>Prefab 'AtoB' no encontrado en Resources/Prefabs/atob.</color>");
+                Debug.LogError("<color=blue>Prefab 'AtoB' no encontrado en Resources/Prefabs/AtoBTime.</color>");
             }
        
     }
@@ -157,7 +168,7 @@ public class GenerateWindowsSDK : EditorWindow
             }
             else
             {
-                Debug.LogError("<color=blue>Prefab 'AtoB' no encontrado en Resources/Prefabs/atob.</color>");
+                Debug.LogError("<color=blue>Prefab 'AtoB' no encontrado en Resources/Prefabs/PlatformPaths.</color>");
             }
         
     }
@@ -206,7 +217,7 @@ public class GenerateWindowsSDK : EditorWindow
         }
         else
         {
-            Debug.LogError("<color=blue>Prefab 'PathsWithTime' no encontrado en Resources/Prefabs/atob.</color>");
+            Debug.LogError("<color=blue>Prefab 'PathsWithTime' no encontrado en Resources/Prefabs/PlatformPathsTime.</color>");
         }
 
     }
@@ -234,6 +245,239 @@ public class GenerateWindowsSDK : EditorWindow
         else
         {
             Debug.Log("<color=green>No GameObject Selected</color>");
+        }
+
+    }
+
+    [MenuItem("GameObject/SDK_Sleekhell/Maze/Crawler")]
+    private static void CreateCrawlerPrefab()
+    {
+
+        GameObject prefab = Resources.Load<GameObject>("Prefab/Mazes/Crawler");
+        
+        if (prefab != null)
+        {
+
+            GameObject instance = (GameObject)PrefabUtility.InstantiatePrefab(prefab);
+            instance.name = prefab.name; // Opcional: asegura que el nombre del objeto instanciado sea igual al prefab
+            Undo.RegisterCreatedObjectUndo(instance, "Create Crawler");
+            
+
+        }
+        else
+        {
+            Debug.LogError("<color=blue>Prefab Crawler no encontrado en Resources Prefab/Mazes.</color>");
+        }
+
+    }
+    [MenuItem("GameObject/SDK_Sleekhell/Maze/Prims")]
+    private static void CreatePrimsPrefab()
+    {
+
+        GameObject prefab = Resources.Load<GameObject>("Prefab/Mazes/Prims");
+
+        if (prefab != null)
+        {
+
+            GameObject instance = (GameObject)PrefabUtility.InstantiatePrefab(prefab);
+            instance.name = prefab.name; // Opcional: asegura que el nombre del objeto instanciado sea igual al prefab
+            Undo.RegisterCreatedObjectUndo(instance, "Create Prims");
+
+
+        }
+        else
+        {
+            Debug.LogError("<color=blue>Prefab Prims no encontrado en ResourcesPrefab/Mazes.</color>");
+        }
+
+    }
+    [MenuItem("GameObject/SDK_Sleekhell/Maze/Recursive")]
+    private static void CreateRecursivePrefab()
+    {
+
+        GameObject prefab = Resources.Load<GameObject>("Prefab/Mazes/Recursive");
+
+        if (prefab != null)
+        {
+
+            GameObject instance = (GameObject)PrefabUtility.InstantiatePrefab(prefab);
+            instance.name = prefab.name; // Opcional: asegura que el nombre del objeto instanciado sea igual al prefab
+            Undo.RegisterCreatedObjectUndo(instance, "Create Recursive");
+
+
+        }
+        else
+        {
+            Debug.LogError("<color=blue>Prefab Recursive no encontrado en Resources Prefab/Mazes.</color>");
+        }
+
+    }
+    [MenuItem("GameObject/SDK_Sleekhell/Maze/StackMaze")]
+    private static void CreateStackMazePrefab()
+    {
+
+        GameObject prefab = Resources.Load<GameObject>("Prefab/Mazes/StackMaze");
+
+        if (prefab != null)
+        {
+
+            GameObject instance = (GameObject)PrefabUtility.InstantiatePrefab(prefab);
+            instance.name = prefab.name; // Opcional: asegura que el nombre del objeto instanciado sea igual al prefab
+            Undo.RegisterCreatedObjectUndo(instance, "Create StackMaze");
+
+
+        }
+        else
+        {
+            Debug.LogError("<color=blue>Prefab StackMaze no encontrado en ResourcesPrefab/Mazes.</color>");
+        }
+
+    }
+    [MenuItem("GameObject/SDK_Sleekhell/Maze/Wilson")]
+    private static void CreateWilsonPrefab()
+    {
+
+        GameObject prefab = Resources.Load<GameObject>("Prefab/Mazes/Wilson");
+
+        if (prefab != null)
+        {
+
+            GameObject instance = (GameObject)PrefabUtility.InstantiatePrefab(prefab);
+            instance.name = prefab.name; // Opcional: asegura que el nombre del objeto instanciado sea igual al prefab
+            Undo.RegisterCreatedObjectUndo(instance, "Create Wilson");
+
+
+        }
+        else
+        {
+            Debug.LogError("<color=blue>Prefab Wilson no encontrado en ResourcesPrefab/Mazes.</color>");
+        }
+
+    }
+    [MenuItem("GameObject/SDK_Sleekhell/Maze/WilsonWithRooms")]
+    private static void CreateWilsonWithRoomsPrefab()
+    {
+
+        GameObject prefab = Resources.Load<GameObject>("Prefab/Mazes/WilsonWithRooms");
+
+        if (prefab != null)
+        {
+
+            GameObject instance = (GameObject)PrefabUtility.InstantiatePrefab(prefab);
+            instance.name = prefab.name; // Opcional: asegura que el nombre del objeto instanciado sea igual al prefab
+            Undo.RegisterCreatedObjectUndo(instance, "Create WilsonWithRooms");
+
+
+        }
+        else
+        {
+            Debug.LogError("<color=blue>Prefab WilsonWithRooms no encontrado en ResourcesPrefab/Mazes.</color>");
+        }
+
+    }
+
+    [MenuItem("Component/SDK_Sleekhell/Maze/Crawler")]
+    private static void CreateCrawlerScript()
+    {
+        GameObject selected = Selection.activeGameObject;
+        if (selected)
+        {
+            Undo.AddComponent<Crawler>(selected);
+        }
+        else
+        {
+            Debug.Log("<color=green>No GameObject Selected</color>");
+        }
+
+    }
+    [MenuItem("Component/SDK_Sleekhell/Maze/Prims")]
+    private static void CreatePrimsScript()
+    {
+        GameObject selected = Selection.activeGameObject;
+        if (selected)
+        {
+            Undo.AddComponent<Prims>(selected);
+        }
+        else
+        {
+            Debug.Log("<color=green>No GameObject Selected</color>");
+        }
+
+    }
+    [MenuItem("Component/SDK_Sleekhell/Maze/Recursive")]
+    private static void CreateRecursiveScript()
+    {
+        GameObject selected = Selection.activeGameObject;
+        if (selected)
+        {
+            Undo.AddComponent<Recursive>(selected);
+        }
+        else
+        {
+            Debug.Log("<color=green>No GameObject Selected</color>");
+        }
+
+    }
+    [MenuItem("Component/SDK_Sleekhell/Maze/Stack")]
+    private static void CreateStackMazeScript()
+    {
+        GameObject selected = Selection.activeGameObject;
+        if (selected)
+        {
+            Undo.AddComponent<StackMaze>(selected);
+        }
+        else
+        {
+            Debug.Log("<color=green>No GameObject Selected</color>");
+        }
+
+    }
+    [MenuItem("Component/SDK_Sleekhell/Maze/Wilson")]
+    private static void CreateWilsonScript()
+    {
+        GameObject selected = Selection.activeGameObject;
+        if (selected)
+        {
+            Undo.AddComponent<Wilson>(selected);
+        }
+        else
+        {
+            Debug.Log("<color=green>No GameObject Selected</color>");
+        }
+
+    }
+    [MenuItem("Component/SDK_Sleekhell/Maze/WilsonWithRooms")]
+    private static void CreateWilsonWithRoomsScript()
+    {
+        GameObject selected = Selection.activeGameObject;
+        if (selected)
+        {
+            Undo.AddComponent<WilsonWithRooms>(selected);
+        }
+        else
+        {
+            Debug.Log("<color=green>No GameObject Selected</color>");
+        }
+
+    }
+    [MenuItem("GameObject/SDK_Sleekhell/Player/Player")]
+    private static void CreatePlayerPrefab()
+    {
+
+        GameObject prefab = Resources.Load<GameObject>("Prefab/Player/Player");
+
+        if (prefab != null)
+        {
+
+            GameObject instance = (GameObject)PrefabUtility.InstantiatePrefab(prefab);
+            instance.name = prefab.name; // Opcional: asegura que el nombre del objeto instanciado sea igual al prefab
+            Undo.RegisterCreatedObjectUndo(instance, "Create Player");
+
+
+        }
+        else
+        {
+            Debug.LogError("<color=blue>Prefab Player no encontrado en Resources Prefab/Player/Player.</color>");
         }
 
     }

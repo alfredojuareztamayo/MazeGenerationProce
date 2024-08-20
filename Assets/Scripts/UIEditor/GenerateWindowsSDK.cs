@@ -138,7 +138,7 @@ public class GenerateWindowsSDK : EditorWindow
 
     }
 
-    [MenuItem("GameObject/SDK_Sleekhell/Platforms/PlatformPaths")]
+    [MenuItem("GameObject/SDK_Sleekhell/Platforms/PlatformPathsPrefab")]
     private static void CreatePlatformPathsPrefab()
     {
         
@@ -160,5 +160,81 @@ public class GenerateWindowsSDK : EditorWindow
                 Debug.LogError("<color=blue>Prefab 'AtoB' no encontrado en Resources/Prefabs/atob.</color>");
             }
         
+    }
+    [MenuItem("Component/SDK_Sleekhell/Platforms/PlatformPaths")]
+    private static void CreatePlatformPathsScript()
+    {
+        GameObject selected = Selection.activeGameObject;
+        if (selected)
+        {
+            if (CheckTagExist("Platform"))
+            {
+                selected.tag = "Platform";
+            }
+            else
+            {
+                Debug.Log($"<color=blue>Missing Platform Tag</color>");
+            }
+            if (selected.GetComponent<BoxCollider>() == null)
+            {
+                Undo.AddComponent<BoxCollider>(selected);
+            }
+            Undo.AddComponent<PlatformWithPath>(selected);
+        }
+        else
+        {
+            Debug.Log("<color=green>No GameObject Selected</color>");
+        }
+
+    }
+    [MenuItem("GameObject/SDK_Sleekhell/Platforms/PlatformPathsTimePrefab")]
+    private static void CreatePlatformPathsTimePrefab()
+    {
+
+        GameObject prefab = Resources.Load<GameObject>("Prefab/Platform/PlatformWithPath/PathwithTime/PlatformWithPathAndTime");
+        GameObject prefab2 = Resources.Load<GameObject>("Prefab/Platform/PlatformWithPath/PathwithTime/PathsToFollowTime");
+        if (prefab2 != null && prefab != null)
+        {
+
+            GameObject instance = (GameObject)PrefabUtility.InstantiatePrefab(prefab);
+            instance.name = prefab.name; // Opcional: asegura que el nombre del objeto instanciado sea igual al prefab
+            Undo.RegisterCreatedObjectUndo(instance, "Create paths Platform time");
+            GameObject instance2 = (GameObject)PrefabUtility.InstantiatePrefab(prefab2);
+            instance2.name = prefab2.name; // Opcional: asegura que el nombre del objeto instanciado sea igual al prefab
+            Undo.RegisterCreatedObjectUndo(instance2, "Create paths Platform Path time");
+
+        }
+        else
+        {
+            Debug.LogError("<color=blue>Prefab 'PathsWithTime' no encontrado en Resources/Prefabs/atob.</color>");
+        }
+
+    }
+
+    [MenuItem("Component/SDK_Sleekhell/Platforms/PlatformPathsTime")]
+    private static void CreatePlatformPathsTimeScript()
+    {
+        GameObject selected = Selection.activeGameObject;
+        if (selected)
+        {
+            if (CheckTagExist("Platform"))
+            {
+                selected.tag = "Platform";
+            }
+            else
+            {
+                Debug.Log($"<color=blue>Missing Platform Tag</color>");
+            }
+            if (selected.GetComponent<BoxCollider>() == null)
+            {
+                Undo.AddComponent<BoxCollider>(selected);
+            }
+            Undo.AddComponent<PlatformWithPathAndStop>(selected);
+        }
+        else
+        {
+            Debug.Log("<color=green>No GameObject Selected</color>");
+        }
+
     }
 }

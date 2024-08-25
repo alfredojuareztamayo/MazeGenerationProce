@@ -31,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
         controller = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;  // Lock the cursor to the center of the screen
         originalParent = transform.parent;
+
     }
 
     /// <summary>

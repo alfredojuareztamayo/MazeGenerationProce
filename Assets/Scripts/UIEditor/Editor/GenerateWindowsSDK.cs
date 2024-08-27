@@ -481,4 +481,10 @@ public class GenerateWindowsSDK : EditorWindow
         }
 
     }
+   /* [MenuItem("Component/SDK_Sleekhell/Maze/WilsonWithRooms")]
+    private static void CreatePlayerScripts()
+    {
+        GameObject
+    }*/
+        
 }

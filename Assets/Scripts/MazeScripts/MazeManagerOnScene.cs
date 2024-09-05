@@ -6,12 +6,16 @@ public class MazeManagerOnScene : MonoBehaviour
 {
     public StackMaze maze;
 
-    void Start()
+    private void Awake()
     {
-        int width = PlayerPrefs.GetInt("MazeWidth", 10); // Valor por defecto 10
-        int depth = PlayerPrefs.GetInt("MazeDepth", 10); // Valor por defecto 10
+        int width = PlayerPrefs.GetInt("MazeWidth"); // Valor por defecto 10
+        int depth = PlayerPrefs.GetInt("MazeDepth"); // Valor por defecto 10
 
         maze.width = width;
         maze.depth = depth;
+    }
+    void Start()
+    {
+       
     }
 }

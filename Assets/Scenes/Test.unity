@@ -97,7 +97,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 769c3960b583adf4ea6bc19d66d3ad5b,
+    type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -123,6 +124,18 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &147409567 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8732808220405574213, guid: 2e8346565ae40e24e9c8d474f0d00cac,
+    type: 3}
+  m_PrefabInstance: {fileID: 1394246737}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aad964cdf5d716e42a230a904e0a41d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &183714414 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4491462263578086222, guid: f891868152dc62f449c6cc00fdd9707d,
@@ -479,6 +492,51 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &306836908
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 306836910}
+  - component: {fileID: 306836909}
+  m_Layer: 0
+  m_Name: MazeManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &306836909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 306836908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 529f1c368da184b46a3c401c37e18225, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maze: {fileID: 147409567}
+--- !u!4 &306836910
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 306836908}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 214.6649, y: -2.1231766, z: 275.5913}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1695,12 +1753,12 @@ PrefabInstance:
     - target: {fileID: 8732808220405574213, guid: 2e8346565ae40e24e9c8d474f0d00cac,
         type: 3}
       propertyPath: depth
-      value: 100
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 8732808220405574213, guid: 2e8346565ae40e24e9c8d474f0d00cac,
         type: 3}
       propertyPath: width
-      value: 100
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 8732808220405574213, guid: 2e8346565ae40e24e9c8d474f0d00cac,
         type: 3}
@@ -2444,6 +2502,7 @@ SceneRoots:
   - {fileID: 338284043}
   - {fileID: 1707866395}
   - {fileID: 458217647}
+  - {fileID: 306836910}
   - {fileID: 1394246737}
   - {fileID: 1746087953}
   - {fileID: 234778757}

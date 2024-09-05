@@ -51,7 +51,7 @@ public class DialogueManager : MonoBehaviour
     /// <summary>
     /// Método que se llama en cada frame. Permite alternar la visibilidad del menú con la tecla Escape y gestiona la pausa del juego y la visibilidad del cursor.
     /// </summary>
-    private void Update()
+   /* private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -70,7 +70,7 @@ public class DialogueManager : MonoBehaviour
                 Cursor.visible = false;
             }
         }
-    }
+    }*/
 
     /// <summary>
     /// Establece el idioma para los diálogos.

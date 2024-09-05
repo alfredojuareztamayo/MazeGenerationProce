@@ -19,6 +19,7 @@ public class MenuDialogue : MonoBehaviour
             Time.timeScale = 0;
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
+           // Cursor.lockState = CursorLockMode.Locked;
         }
     }
 
@@ -40,6 +41,7 @@ public class MenuDialogue : MonoBehaviour
             {
                 Time.timeScale = 1;
                 Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
             }
         }
     }
@@ -60,5 +62,15 @@ public class MenuDialogue : MonoBehaviour
         Debug.Log("Saliste del juego");
         Application.Quit();
 
+    }
+
+    public void CloseWindowButton()
+    {
+        turnOnOffMenu = false;
+        canvasManager.SetActive(turnOnOffMenu);
+        Time.timeScale = 1;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        // Cursor.lockState = CursorLockMode.None;
     }
 }

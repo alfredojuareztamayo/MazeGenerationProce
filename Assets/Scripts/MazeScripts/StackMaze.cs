@@ -8,6 +8,12 @@ using UnityEngine;
 /// </summary>
 public class StackMaze : Maze
 {
+    public GameObject Player;
+    public GameObject TeleportToAnotherLevel;
+    int id = 0;
+    public float offsetYPlayer = 0;
+    public List<RoomsCreation> rooms = new List<RoomsCreation>();
+
     /// <summary>
     /// Starts the maze generation process using a stack-based depth-first search algorithm.
     /// </summary>
@@ -15,8 +21,13 @@ public class StackMaze : Maze
     {
         // Initialize the stack and push the starting location onto it
         Stack<MapLocation> stack = new Stack<MapLocation>();
-        MapLocation start = new MapLocation(Random.Range(1, width - 1), Random.Range(1, depth - 1));
+        int t_x = Random.Range(1, width - 1);
+        int t_z = Random.Range(1, depth - 1);
+        MapLocation start = new MapLocation( t_x,t_z);
         stack.Push(start);
+        RoomsCreation roomsCreation = new RoomsCreation(t_x, t_z, id);
+        id++;
+        rooms.Add(roomsCreation);
 
         // Continue generating the maze while there are still locations in the stack
         while (stack.Count > 0)
@@ -32,6 +43,9 @@ public class StackMaze : Maze
                 // Mark the current cell as part of the maze
                 map[x, z] = 0;
 
+                RoomsCreation temp = new RoomsCreation(x, z, id);
+                id++;
+                rooms.Add(temp);
                 // Shuffle the directions to ensure randomness in path creation
                 direction.Shuffle();
 
@@ -53,6 +67,16 @@ public class StackMaze : Maze
         }
     }
 
+    public override void InstantiatePlayer()
+    {
+        RoomsCreation tempPlayer = rooms.Find(m => m.id == 0);
+        RoomsCreation tempTeleport = rooms.Find(m => m.id == (rooms.Count/2));
+        Player.GetComponent<CharacterController>().enabled = false;
+        Player.transform.position = new Vector3((tempPlayer.x * scale) + positionMaze.position.x, positionMaze.position.y, (tempPlayer.z * scale) + positionMaze.position.z);
+        Player.GetComponent<CharacterController>().enabled = true;
+        Debug.Log(rooms.Count);
+       TeleportToAnotherLevel.transform.position = new Vector3((tempTeleport.x * scale) + positionMaze.position.x, positionMaze.position.y, (tempTeleport.z * scale) + positionMaze.position.z);
+    }
     /// <summary>
     /// Checks if the given coordinates are within the bounds of the maze.
     /// </summary>

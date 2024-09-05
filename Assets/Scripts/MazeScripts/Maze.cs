@@ -15,6 +15,7 @@ public class MapLocation
     /// </summary>
     public int z;
 
+    public int id;
     /// <summary>
     /// Constructor to initialize a map location with x and z coordinates.
     /// </summary>
@@ -25,7 +26,24 @@ public class MapLocation
         x = _x;
         z = _z;
     }
+
 }
+
+public class RoomsCreation
+{
+    public int x;
+    public int z;
+    public int id;
+
+    public RoomsCreation(int _x, int _z, int _id)
+    {
+        x = _x;
+        z = _z;
+        id = _id;
+    }
+}
+
+
 public class Maze : MonoBehaviour
 {
 
@@ -92,6 +110,7 @@ public class Maze : MonoBehaviour
             InitialiseMap();
             Generate();
             DrawMap();
+            InstantiatePlayer();
          }
 
     }
@@ -128,6 +147,10 @@ public class Maze : MonoBehaviour
         }
     }
 
+    public virtual void InstantiatePlayer()
+    {
+        Debug.Log("Hey used me in the child script");
+    }
     /// <summary>
     /// Draws the maze by instantiating wall prefabs based on the map data.
     /// </summary>

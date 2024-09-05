@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class MenuDialogue : MonoBehaviour
 {
-    private bool turnOnOffMenu = false;
-    private bool onLenguage = false;
+    public bool turnOnOffMenu = false;
+   // private bool onLenguage = false;
     public GameObject canvasMenu;
     public GameObject canvasLenguage;
     public GameObject canvasManager;
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (turnOnOffMenu)
+        {
+            
+            canvasManager.SetActive(turnOnOffMenu);
+            Time.timeScale = 0;
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
     }
 
     // Update is called once per frame

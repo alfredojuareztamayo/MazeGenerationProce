@@ -56,11 +56,14 @@ public class PlatformPathAtoBTime : PlatformBase
         isMoving = true;
 
         // Move the platform towards the current target position
-        while (Vector3.Distance(transform.position, direccionAtoB[currentDirection]) > 0.1f)
+        while (Vector3.Distance(transform.position, direccionAtoB[currentDirection]) > 0.05f) // Increased threshold
         {
             transform.position = Vector3.MoveTowards(transform.position, direccionAtoB[currentDirection], speed * Time.deltaTime);
             yield return null;
         }
+
+        // Snap the platform to the exact position to avoid jitter
+        transform.position = direccionAtoB[currentDirection];
 
         // Wait for the specified stop time at the current direction
         yield return new WaitForSeconds(timeToStop[currentDirection]);
@@ -68,29 +71,5 @@ public class PlatformPathAtoBTime : PlatformBase
         // Switch to the next direction
         currentDirection = (currentDirection + 1) % direccionAtoB.Length;
         isMoving = false;
-    }
-
-    /// <summary>
-    /// Handles collision with objects. If the object is tagged as "Player", it sets the player as a child of the platform.
-    /// </summary>
-    /// <param name="collision">The collision information.</param>
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            collision.gameObject.transform.SetParent(transform);
-        }
-    }
-
-    /// <summary>
-    /// Handles when the player exits the collision with the platform. It removes the player from being a child of the platform.
-    /// </summary>
-    /// <param name="collision">The collision information.</param>
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            collision.gameObject.transform.SetParent(null);
-        }
     }
 }

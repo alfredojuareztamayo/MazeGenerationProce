@@ -1,6 +1,5 @@
 using UnityEngine;
 
-
 /// <summary>
 /// Handles the movement, rotation, jumping, and teleportation of the player character.
 /// </summary>

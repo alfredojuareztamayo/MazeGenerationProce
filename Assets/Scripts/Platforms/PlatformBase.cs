@@ -22,14 +22,17 @@ public abstract class PlatformBase : MonoBehaviour
 
     private new Collider collider;        // Reference to the platform's Collider component
     private MeshRenderer MeshRenderer;    // Reference to the platform's MeshRenderer component
-    public Material material;             // Material to be applied to the platform's MeshRenderer
-
+    public Material material;
+    // Material to be applied to the platform's MeshRenderer
+    public Rigidbody t_rb;  // Rigidbody for platform movement
     /// <summary>
     /// Called before the first frame update.
     /// Initializes the Collider and MeshRenderer components and applies the material if provided.
     /// </summary>
     protected virtual void Start()
     {
+        t_rb = gameObject.AddComponent<Rigidbody>();
+        t_rb.isKinematic = true;  // Rigidbody will not be affected by physics
         collider = GetComponent<Collider>();
         MeshRenderer = GetComponent<MeshRenderer>();
         if (MeshRenderer != null && material != null)

@@ -47,7 +47,7 @@ public class GenerateWindowsSDK : EditorWindow
     private static void CreateTeleportPrefab()
     {
         GameObject prefab = Resources.Load<GameObject>("Prefab/Teleport/TeleportPrefab");
-        if (prefab == null)
+        if (prefab != null)
         {
             GameObject instance = (GameObject)PrefabUtility.InstantiatePrefab(prefab);
             instance.name = prefab.name;
@@ -481,10 +481,232 @@ public class GenerateWindowsSDK : EditorWindow
         }
 
     }
-   /* [MenuItem("Component/SDK_Sleekhell/Maze/WilsonWithRooms")]
-    private static void CreatePlayerScripts()
+    [MenuItem("GameObject/SDK_Sleekhell/ResetHolder/ResetHolder")]
+    private static void ResetHolderPrefab()
     {
-        GameObject
-    }*/
-        
+        GameObject prefab = Resources.Load<GameObject>("Prefab/NextLvl/PlaceReset");
+
+        if (prefab != null)
+        {
+
+            GameObject instance = (GameObject)PrefabUtility.InstantiatePrefab(prefab);
+            instance.name = prefab.name; // Opcional: asegura que el nombre del objeto instanciado sea igual al prefab
+            Undo.RegisterCreatedObjectUndo(instance, "Create PlaceReset");
+
+
+        }
+        else
+        {
+            Debug.LogError("<color=blue>Prefab PlaceReset no encontrado en Resources Prefab/NextLvl/PlaceReset.</color>");
+        }
+    }
+    [MenuItem("Component/SDK_Sleekhell/ResetHolder/ResetHolder")]
+    private static void ResetHolderScript()
+    {
+        GameObject selected = Selection.activeGameObject;
+        if (selected)
+        {
+            Undo.AddComponent<ResetPlace>(selected);
+        }
+        else
+        {
+            Debug.Log("<color=green>No GameObject Selected</color>");
+        }
+
+    }
+    [MenuItem("GameObject/SDK_Sleekhell/Door&Key/Door")]
+    private static void DoorPrefab()
+    {
+        GameObject prefab = Resources.Load<GameObject>("Prefab/Door/Door");
+
+        if (prefab != null)
+        {
+
+            GameObject instance = (GameObject)PrefabUtility.InstantiatePrefab(prefab);
+            instance.name = prefab.name; // Opcional: asegura que el nombre del objeto instanciado sea igual al prefab
+            Undo.RegisterCreatedObjectUndo(instance, "Create Door");
+
+
+        }
+        else
+        {
+            Debug.LogError("<color=blue>Prefab Door no encontrado en Resources .</color>");
+        }
+    }
+    [MenuItem("GameObject/SDK_Sleekhell/Door&Key/Key")]
+    private static void KeyPrefab()
+    {
+        GameObject prefab = Resources.Load<GameObject>("Prefab/Keys/key");
+
+        if (prefab != null)
+        {
+
+            GameObject instance = (GameObject)PrefabUtility.InstantiatePrefab(prefab);
+            instance.name = prefab.name; // Opcional: asegura que el nombre del objeto instanciado sea igual al prefab
+            Undo.RegisterCreatedObjectUndo(instance, "Create key");
+
+
+        }
+        else
+        {
+            Debug.LogError("<color=blue>Prefab Key no encontrado en Resources .</color>");
+        }
+    }
+    [MenuItem("GameObject/SDK_Sleekhell/Potions/Jump")]
+    private static void JumpPrefab()
+    {
+        GameObject prefab = Resources.Load<GameObject>("Prefab/Items/JumpPotion");
+
+        if (prefab != null)
+        {
+
+            GameObject instance = (GameObject)PrefabUtility.InstantiatePrefab(prefab);
+            instance.name = prefab.name; // Opcional: asegura que el nombre del objeto instanciado sea igual al prefab
+            Undo.RegisterCreatedObjectUndo(instance, "Create JumpPotion");
+
+
+        }
+        else
+        {
+            Debug.LogError("<color=blue>Prefab JumpPotion no encontrado en Resources .</color>");
+        }
+    }
+    [MenuItem("GameObject/SDK_Sleekhell/Potions/JumpReactivate")]
+    private static void JumpRPrefab()
+    {
+        GameObject prefab = Resources.Load<GameObject>("Prefab/Items/JumpPotionReactivate");
+
+        if (prefab != null)
+        {
+
+            GameObject instance = (GameObject)PrefabUtility.InstantiatePrefab(prefab);
+            instance.name = prefab.name; // Opcional: asegura que el nombre del objeto instanciado sea igual al prefab
+            Undo.RegisterCreatedObjectUndo(instance, "Create JumpPotionReactivate");
+
+
+        }
+        else
+        {
+            Debug.LogError("<color=blue>Prefab JumpPotionReactivate no encontrado en Resources .</color>");
+        }
+    }
+    [MenuItem("GameObject/SDK_Sleekhell/Potions/MaxHealthPotion")]
+    private static void MaxHealthPotionPrefab()
+    {
+        GameObject prefab = Resources.Load<GameObject>("Prefab/Items/MaxHealthPotion");
+
+        if (prefab != null)
+        {
+
+            GameObject instance = (GameObject)PrefabUtility.InstantiatePrefab(prefab);
+            instance.name = prefab.name; // Opcional: asegura que el nombre del objeto instanciado sea igual al prefab
+            Undo.RegisterCreatedObjectUndo(instance, "Create MaxHealthPotion");
+
+
+        }
+        else
+        {
+            Debug.LogError("<color=blue>Prefab MaxHealthPotion no encontrado en Resources .</color>");
+        }
+    }
+    [MenuItem("GameObject/SDK_Sleekhell/Potions/SpeedPotion")]
+    private static void SpeedPotionPrefab()
+    {
+        GameObject prefab = Resources.Load<GameObject>("Prefab/Items/SpeedPotion");
+
+        if (prefab != null)
+        {
+
+            GameObject instance = (GameObject)PrefabUtility.InstantiatePrefab(prefab);
+            instance.name = prefab.name; // Opcional: asegura que el nombre del objeto instanciado sea igual al prefab
+            Undo.RegisterCreatedObjectUndo(instance, "Create SpeedPotion");
+
+
+        }
+        else
+        {
+            Debug.LogError("<color=blue>Prefab SpeedPotion no encontrado en Resources .</color>");
+        }
+    }
+    [MenuItem("GameObject/SDK_Sleekhell/Potions/SpeedPotionReactivate")]
+    private static void SpeedPotionReactivatePrefab()
+    {
+        GameObject prefab = Resources.Load<GameObject>("Prefab/Items/SpeedPotionReactivate");
+
+        if (prefab != null)
+        {
+
+            GameObject instance = (GameObject)PrefabUtility.InstantiatePrefab(prefab);
+            instance.name = prefab.name; // Opcional: asegura que el nombre del objeto instanciado sea igual al prefab
+            Undo.RegisterCreatedObjectUndo(instance, "Create SpeedPotionReactivate");
+
+
+        }
+        else
+        {
+            Debug.LogError("<color=blue>Prefab SpeedPotionReactivate no encontrado en Resources .</color>");
+        }
+    }
+
+    [MenuItem("Component/SDK_Sleekhell/CreateItem/Item")]
+    private static void ItemScript()
+    {
+        GameObject selected = Selection.activeGameObject;
+        if (selected)
+        {
+            Undo.AddComponent<Item>(selected);
+        }
+        else
+        {
+            Debug.Log("<color=green>No GameObject Selected</color>");
+        }
+
+    }
+    [MenuItem("Component/SDK_Sleekhell/CreateItem/Item Health")]
+    private static void ItemHScript()
+    {
+        GameObject selected = Selection.activeGameObject;
+        if (selected)
+        {
+            Undo.AddComponent<ItemHealth>(selected);
+        }
+        else
+        {
+            Debug.Log("<color=green>No GameObject Selected</color>");
+        }
+
+    }
+    [MenuItem("Component/SDK_Sleekhell/CreateItem/Key")]
+    private static void KeyScript()
+    {
+        GameObject selected = Selection.activeGameObject;
+        if (selected)
+        {
+            Undo.AddComponent<Key>(selected);
+        }
+        else
+        {
+            Debug.Log("<color=green>No GameObject Selected</color>");
+        }
+
+    }
+    [MenuItem("GameObject/SDK_Sleekhell/Dialogue/DialogueManager")]
+    private static void DialoguePrefab()
+    {
+        GameObject prefab = Resources.Load<GameObject>("Prefab/Player/MenuPlayer");
+
+        if (prefab != null)
+        {
+
+            GameObject instance = (GameObject)PrefabUtility.InstantiatePrefab(prefab);
+            instance.name = prefab.name; // Opcional: asegura que el nombre del objeto instanciado sea igual al prefab
+            Undo.RegisterCreatedObjectUndo(instance, "Create MenuPlayer");
+
+
+        }
+        else
+        {
+            Debug.LogError("<color=blue>Prefab MenuPlayer no encontrado en Resources .</color>");
+        }
+    }
 }

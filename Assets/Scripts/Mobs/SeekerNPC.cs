@@ -53,7 +53,7 @@ public class SeekerNPC : NPCManager
                 Debug.Log("Estoy en la inmortalidad del congrejo");
                 break;
             case StatusNPC.Wander:
-                Vector3 wanderForce = SteeringBehaviour.Wander(transform, ref targetPosition, wanderRadius, wanderDistance, wanderJitter, areaCenter, areaSize);
+                Vector3 wanderForce = SteeringBehaviour.Wander(transform, targetPosition, wanderRadius, wanderDistance, wanderJitter, areaCenter, areaSize);
                 ApplySteering(wanderForce);
                 break;
         }

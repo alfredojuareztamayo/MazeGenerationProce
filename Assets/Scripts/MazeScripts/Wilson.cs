@@ -166,31 +166,4 @@ public class Wilson : Maze
         }
     }
 
-    /// <summary>
-    /// Spawns enemies at random positions in the maze.
-    /// </summary>
-    void GenerateEnemies()
-    {
-        for (int z = 1; z < depth - 1; z++)
-        {
-            for (int x = 1; x < width - 1; x++)
-            {
-                if (x == startMaze.x && z == startMaze.z)
-                {
-                    // Skip the starting point
-                    continue;
-                }
-                if (map[x, z] == 2 && enemies > 0)
-                {
-                    if (Random.Range(0, 100) < 50)
-                    {
-                        Vector3 pos = new(x * scale, 0, z * scale);
-                        GameObject enemySpawn = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
-                        enemySpawn.transform.position = pos;
-                        enemies--; // Decrement the number of enemies left to spawn
-                    }
-                }
-            }
-        }
-    }
 }

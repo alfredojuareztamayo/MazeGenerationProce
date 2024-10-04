@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SteeringBehaviour : MonoBehaviour
 {
-    public static Vector3 Wander(Transform entityTransform, ref Vector3 targetPosition, float wanderRadius, float wanderDistance, float wanderJitter, Vector3 areaCenter, Vector3 areaSize)
+    public static Vector3 Wander(Transform entityTransform, Vector3 targetPosition, float wanderRadius, float wanderDistance, float wanderJitter, Vector3 areaCenter, Vector3 areaSize)
     {
         // Calcular el desplazamiento aleatorio
         Vector3 randomPoint = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)) * wanderJitter;
@@ -46,46 +46,5 @@ public class SteeringBehaviour : MonoBehaviour
         return desiredVelocity - entityTransform.GetComponent<Rigidbody>().velocity;
     }
 
-    public static Vector3 Arrive(Transform entityTransform, Vector3 targetPosition, float speed, float slowingDistance)
-    {
-        // Mantener la altura fija del NPC
-        targetPosition.y = entityTransform.position.y;
-
-        Vector3 toTarget = targetPosition - entityTransform.position;
-        float distance = toTarget.magnitude;
-
-        if (distance < 0.1f)
-        {
-            return Vector3.zero;
-        }
-
-        float rampedSpeed = speed * (distance / slowingDistance);
-        float clippedSpeed = Mathf.Min(rampedSpeed, speed);
-        Vector3 desiredVelocity = toTarget * (clippedSpeed / distance);
-
-        return desiredVelocity - entityTransform.GetComponent<Rigidbody>().velocity;
-    }
-
-    public static Vector3 Pursuit(Transform entityTransform, Transform targetTransform, float speed)
-    {
-        Vector3 toTarget = targetTransform.position - entityTransform.position;
-        float relativeHeading = Vector3.Dot(entityTransform.forward, targetTransform.forward);
-
-        if (Vector3.Dot(toTarget, entityTransform.forward) > 0 && relativeHeading < -0.95f)
-        {
-            return Seek(entityTransform, targetTransform.position, speed);
-        }
-
-        float lookAheadTime = toTarget.magnitude / (speed + targetTransform.GetComponent<Rigidbody>().velocity.magnitude);
-
-        return Seek(entityTransform, targetTransform.position + targetTransform.GetComponent<Rigidbody>().velocity * lookAheadTime, speed);
-    }
-
-    public static Vector3 Evade(Transform entityTransform, Transform targetTransform, float speed)
-    {
-        Vector3 toTarget = targetTransform.position - entityTransform.position;
-        float lookAheadTime = toTarget.magnitude / (speed + targetTransform.GetComponent<Rigidbody>().velocity.magnitude);
-
-        return Flee(entityTransform, targetTransform.position + targetTransform.GetComponent<Rigidbody>().velocity * lookAheadTime, speed);
-    }
+    
 }

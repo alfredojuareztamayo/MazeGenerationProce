@@ -48,29 +48,7 @@ public class DialogueManager : MonoBehaviour
         // Invoke("changeIdiom",0.1f);  //default english,
     }
 
-    /// <summary>
-    /// Método que se llama en cada frame. Permite alternar la visibilidad del menú con la tecla Escape y gestiona la pausa del juego y la visibilidad del cursor.
-    /// </summary>
-   /* private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            turnOnOffMenu = !turnOnOffMenu;
-            canvasMenu.SetActive(turnOnOffMenu);
-
-            if (turnOnOffMenu)
-            {
-                Time.timeScale = 0;
-                Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.None;
-            }
-            else
-            {
-                Time.timeScale = 1;
-                Cursor.visible = false;
-            }
-        }
-    }*/
+ 
 
     /// <summary>
     /// Establece el idioma para los diálogos.

@@ -5,33 +5,66 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 
-
+/// <summary>
+/// EN: Handles procedural generation of a dungeon with start tiles, branching paths, doors, and optional debugging visuals.  
+/// Supports dynamic creation of tiles, connection via connectors, collision checking, and light debugging.  
+/// ES: Gestiona la generación procedural de un dungeon con tiles iniciales, caminos ramificados, puertas y opciones de depuración visual.  
+/// Soporta creación dinámica de tiles, conexión mediante conectores, chequeo de colisiones y depuración de luces.  
+/// </summary>
 public class DungeonGenerator : MonoBehaviour
 {
+    /// <summary>EN: Prefabs for the starting rooms. ES: Prefabs para las habitaciones iniciales.</summary>
     public GameObject[] startPrefabs;
+
+    /// <summary>EN: Prefabs for the main dungeon tiles. ES: Prefabs para los tiles principales del dungeon.</summary>
     public GameObject[] TilesPrefabs;
+
+    /// <summary>EN: Prefabs for exit tiles. ES: Prefabs para los tiles de salida.</summary>
     public GameObject[] exitPrefabs;
+
+    /// <summary>EN: Prefabs for blocked tiles. ES: Prefabs para tiles bloqueados.</summary>
     public GameObject[] blockedPrefabs;
+
+    /// <summary>EN: Prefabs for doors. ES: Prefabs para puertas.</summary>
     public GameObject[] doorPrefabs;
 
 
+
     [Header("Debugging Options")]
+    /// <summary>EN: Enable/disable BoxColliders for debugging. ES: Activar/desactivar BoxColliders para depuración.</summary>
     public bool useBoxColliders;
+
+    /// <summary>EN: Enable/disable lighting for debugging. ES: Activar/desactivar iluminación para depuración.</summary>
     public bool useLightingForDebugging;
+
+    /// <summary>EN: Restore original lighting after debugging. ES: Restaurar iluminación original después de la depuración.</summary>
     public bool restoreLightsAfterDebugging;
 
     [Header("Key Blindings")]
+    /// <summary>EN: Key to reload the scene. ES: Tecla para recargar la escena.</summary>
     public KeyCode reloadScene = KeyCode.Backspace;
+
+    /// <summary>EN: Key to toggle the map camera. ES: Tecla para alternar la cámara del mapa.</summary>
     public KeyCode mapToggle = KeyCode.M;
 
     [Header("Generation limits")]
-    [Range(0,1)]public float constructionDelay;
+    /// <summary>EN: Delay between tile construction. ES: Retardo entre la construcción de tiles.</summary>
+    [Range(0, 1)] public float constructionDelay;
+
+    /// <summary>EN: Length of the main path. ES: Longitud del camino principal.</summary>
     [Range(2, 100)] public int mainLength = 10;
+
+    /// <summary>EN: Length of branches. ES: Longitud de los caminos ramificados.</summary>
     [Range(0, 50)] public int branchLength = 5;
+
+    /// <summary>EN: Number of branches to generate. ES: Número de caminos ramificados a generar.</summary>
     [Range(0, 25)] public int numBranch = 10;
+
+    /// <summary>EN: Probability of doors appearing. ES: Probabilidad de aparición de puertas.</summary>
     [Range(0, 100)] public int doorPorcent = 25;
 
     [Header("Avalible until Running")]
+    /// <summary>EN: List of generated tiles for reference. ES: Lista de tiles generados para referencia.</summary>
     public List<Tile> generatedTiles = new List<Tile>();
 
     GameObject goCamera, goPlayer;
@@ -42,6 +75,8 @@ public class DungeonGenerator : MonoBehaviour
     int attemps;
     int maxAttemps = 50;
 
+    /// <summary>EN: Initialize dungeon generation, find camera and player. ES: Inicializa la generación del dungeon, encuentra la cámara y el jugador.</summary>
+
     void Start()
     {
         goCamera = GameObject.Find("OverHeadCamera");
@@ -49,6 +84,7 @@ public class DungeonGenerator : MonoBehaviour
         
         StartCoroutine(DungeonBuild());
     }
+    /// <summary>EN: Handles input for scene reload and camera toggle. ES: Maneja la entrada para recargar la escena y alternar la cámara.</summary>
 
     private void Update()
     {
@@ -62,6 +98,12 @@ public class DungeonGenerator : MonoBehaviour
             goPlayer.SetActive(!goPlayer.activeInHierarchy);
         }
     }
+
+    /// <summary>
+    /// EN: Coroutine that procedurally generates the dungeon with main path and branches, applies lighting for debugging, and handles collision checks.
+    /// ES: Corrutina que genera proceduralmente el dungeon con camino principal y ramificaciones, aplica iluminación para depuración y maneja colisiones.
+    /// </summary>
+    /// <returns>EN: IEnumerator for coroutine. ES: IEnumerator para la corrutina.</returns>
 
     IEnumerator DungeonBuild()
     {

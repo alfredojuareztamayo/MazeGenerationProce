@@ -3,11 +3,28 @@ using System.Collections.Generic;
 using System.Collections;
 using System.Linq;
 
+/// <summary>
+/// EN: Represents a connector component in the scene that can be visually displayed using Gizmos.  
+/// Allows defining a rectangular area and drawing lines from the center to the corners, helping visualize connections in the editor.  
+/// ES: Representa un componente conector en la escena que se muestra visualmente usando Gizmos.  
+/// Permite definir un área rectangular y dibujar líneas desde el centro a las esquinas, ayudando a visualizar conexiones en el editor.  
+/// </summary>
 public class Connector : MonoBehaviour
 {
+    /// <summary>
+    /// EN: Size of the connector's area (width and height).  
+    /// ES: Tamaño del área del conector (ancho y alto).  
+    /// </summary>
     public Vector2 size = Vector2.one * 4f;
+    /// <summary>
+    /// EN: Indicates whether the connector is currently connected.  
+    /// ES: Indica si el conector está actualmente conectado.  
+    /// </summary>
     public bool isConnected;
-
+    /// <summary>
+    /// EN: Draws the connector's Gizmos in the editor, including the rectangle and lines from the center to corners.  
+    /// ES: Dibuja los Gizmos del conector en el editor, incluyendo el rectángulo y líneas desde el centro hacia las esquinas.  
+    /// </summary>
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.cyan;
